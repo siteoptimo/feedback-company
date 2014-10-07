@@ -20,8 +20,8 @@ class FC_Rating {
 		$this->score       = $score;
 	}
 
-	public function addReview(FC_Review $review) {
-		$this->reviews[$review->getId()] = $review;
+	public function addReview( FC_Review $review ) {
+		$this->reviews[ $review->getId() ] = $review;
 	}
 
 
