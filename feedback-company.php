@@ -183,6 +183,7 @@ if ( ! class_exists( 'FeedbackCompany' ) ) {
 		public function admin_init() {
 			new FC_Admin_Settings();
 		}
+
 		/**
 		 * Initializes all of the frontend classes.
 		 */

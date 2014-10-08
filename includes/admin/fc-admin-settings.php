@@ -7,7 +7,7 @@ class FC_Admin_Settings {
 
 	const OPTION_NAME = 'fc_settings';
 
-	private $options;
+	private static $options;
 
 	private $scales = array(
 		4,
@@ -36,16 +36,16 @@ class FC_Admin_Settings {
 		return self::$default_options;
 	}
 
-	private function set_options() {
-		$this->options = array_merge( self::$default_options, get_option( self::OPTION_NAME, array() ) );
+	private static function set_options() {
+		self::$options = array_merge( self::$default_options, get_option( self::OPTION_NAME, array() ) );
 	}
 
-	public function get_options() {
-		if ( $this->options == null ) {
-			$this->set_options();
+	public static function get_options() {
+		if ( self::$options == null ) {
+			self::set_options();
 		}
 
-		return $this->options;
+		return self::$options;
 	}
 
 	public function add_admin_menu() {
@@ -123,7 +123,7 @@ class FC_Admin_Settings {
 
 	public function render_id() {
 		?>
-		<input type='text' name='fc_settings[fc_general_id]' value='<?php echo $this->options['fc_general_id']; ?>'
+		<input type='text' name='fc_settings[fc_general_id]' value='<?php echo self::$options['fc_general_id']; ?>'
 		       size="5">
 		<p class="description">
 			<?php _e( 'Enter your company ID. eg: https://beoordelingen.feedbackcompany.nl/reviews/<strong>YOUR_ID</strong>/<em>YOUR_COMPANY</em>.html', 'feedback-company' ); ?>
@@ -134,7 +134,7 @@ class FC_Admin_Settings {
 	public function render_start() {
 		?>
 		<input type='text' name='fc_settings[fc_defaults_start]' size="5"
-		       value='<?php echo $this->options['fc_defaults_start']; ?>'>
+		       value='<?php echo self::$options['fc_defaults_start']; ?>'>
 		<p class="description">
 			<?php _e( 'Enter the default start position that should be listed.', 'feedback-company' ); ?>
 		</p>
@@ -144,7 +144,7 @@ class FC_Admin_Settings {
 	public function render_amount() {
 		?>
 		<input type='text' name='fc_settings[fc_defaults_amount]' size="5"
-		       value='<?php echo $this->options['fc_defaults_amount']; ?>'>
+		       value='<?php echo self::$options['fc_defaults_amount']; ?>'>
 		<p class="description">
 			<?php _e( 'Enter the default amount of reviews that should be listed.', 'feedback-company' ); ?>
 		</p>
@@ -152,7 +152,7 @@ class FC_Admin_Settings {
 	}
 
 	public function render_scale() {
-		$default = $this->options['fc_defaults_scale'];
+		$default = self::$options['fc_defaults_scale'];
 		?>
 		<select name="fc_settings[fc_defaults_scale]">
 			<?php foreach ( $this->scales as $scale ): ?>
@@ -165,7 +165,7 @@ class FC_Admin_Settings {
 	}
 
 	public function render_order() {
-		$default = $this->options['fc_defaults_order'];
+		$default = self::$options['fc_defaults_order'];
 		$orders  = array(
 			'asc'  => __( 'Oldest first', 'feedback-company' ),
 			'desc' => __( 'Newest first', 'feedback-company' )

@@ -61,12 +61,6 @@ class FC_Review {
 	 */
 	private $improvements;
 
-	public static $buyFrequencyMap = array(
-		'soms'       => FC_BuyFrequency::SOMETIMES,
-		'vaak'       => FC_BuyFrequency::OFTEN,
-		'regelmatig' => FC_BuyFrequency::REGULARLY
-	);
-
 
 	/**
 	 * @return int
