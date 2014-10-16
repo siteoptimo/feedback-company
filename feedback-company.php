@@ -195,6 +195,7 @@ if ( ! class_exists( 'FeedbackCompany' ) ) {
 		 */
 		private function init() {
 			new FC_Main();
+			new FC_MultiLingual();
 		}
 	}
 

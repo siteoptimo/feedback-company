@@ -69,7 +69,7 @@ class FC_Admin_Settings {
 
 		add_settings_field(
 			'fc_general_id',
-			__( 'Your company ID', 'feedback-company' ),
+			apply_filters( 'fc_settings_id', __( 'Your company ID', 'feedback-company' ) ),
 			array( $this, 'render_id' ),
 			'feedback-company',
 			'fc_general_section'

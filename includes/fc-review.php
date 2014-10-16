@@ -178,7 +178,7 @@ class FC_Review {
 	 * @return string
 	 */
 	public function getReview() {
-		return $this->review;
+		return trim( $this->review );
 	}
 
 	/**
