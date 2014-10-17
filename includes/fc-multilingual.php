@@ -15,14 +15,29 @@ class FC_MultiLingual {
 		}
 
 		add_filter( 'fc_settings_id', array( $this, 'multilingual_id' ) );
+		add_filter( 'fc_options_id', array( $this, 'replace_id' ));
 	}
 
 	public function multilingual_id( $description ) {
 
 		$languages = self::get_languages();
 
-		return $description . ' (' . implode( ', ', $languages ) . ')';
+		return $description . 's (' . implode( ', ', $languages ) . ')';
 
+	}
+
+	public function replace_id($id) {
+		$languages = self::get_languages();
+
+		$ids = array_map('trim', explode(',', $id));
+
+		foreach($languages as $k => $lang) {
+			if($lang == ICL_LANGUAGE_CODE) {
+				return $ids[$k];
+			}
+		}
+
+		return $ids[0];
 	}
 
 	public static function get_languages() {
@@ -44,6 +59,8 @@ class FC_MultiLingual {
 				array_push( $languages, $short );
 			}
 		}
+
+		sort($languages);
 
 		return $languages;
 	}

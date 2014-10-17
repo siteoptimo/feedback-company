@@ -30,8 +30,8 @@ class FC_Main {
 	public static function getParams( $options = array() ) {
 		$options = shortcode_atts( FC_Admin_Settings::get_options(), $options );
 
-		return array(
-			'ws'             => $options['fc_general_id'],
+		$return = array(
+			'ws'             => apply_filters('fc_options_id', $options['fc_general_id']),
 			'basescore'      => $options['fc_defaults_scale'],
 			'publishids'     => '1',
 			'publishdetails' => '1',
@@ -39,6 +39,8 @@ class FC_Main {
 			'nor'            => $options['fc_defaults_amount'],
 			'start'          => $options['fc_defaults_start']
 		);
+
+		return $return;
 
 	}
 
